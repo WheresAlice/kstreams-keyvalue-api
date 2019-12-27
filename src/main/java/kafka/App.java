@@ -64,6 +64,9 @@ public class App {
         ReadOnlyKeyValueStore<String, String> keyValueStore =
                 streams.store("keyvalue-store", QueryableStoreTypes.keyValueStore());
 
+        System.out.println("Started up with roughly " + keyValueStore.approximateNumEntries() + " keys");
+        System.out.println("Listening on http://127.0.0.1:4567");
+
         // Create an http server and listen for GET requests
         get("/:key", (req, res) -> keyValueStore.get(req.params(":key")));
     }
